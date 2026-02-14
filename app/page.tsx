@@ -6,26 +6,34 @@ import { motion, AnimatePresence } from "framer-motion";
 const memories = [
   {
     id: 1,
-    date: "Tahun 2024",
-    title: "Awal Cerita Kita",
+    date: "Tahun 2023",
+    title: "Saling Kenal",
     description:
-      "Masih inget banget momen-momen awal kita. Masih malu-malu tapi bahagia banget rasanya bisa bareng kamu.",
-    image: "/photos/2024.jpg",
+      "Momen awal kita saling sapa dan mulai kenal satu sama lain. Masih malu-malu dan canggung, tapi ternyata awal dari segalanya.",
+    image: "/photos/2023.jpg", // Jangan lupa tambahin foto 2023.jpg
   },
   {
     id: 2,
-    date: "Tahun 2025",
-    title: "Makin Deket & Bucin",
+    date: "Tahun 2024",
+    title: "Mulai Dekat",
     description:
-      "Tahun di mana kita makin kenal satu sama lain. Ngelewatin banyak hal bareng, dari yang seneng sampe yang bikin pusing.",
-    image: "/photos/2025.jpg",
+      "Fase di mana kita mulai nyambung, makin deket, dan ngerasa nyaman banget ngelewatin hari-hari bareng kamu.",
+    image: "/photos/2024.jpg",
   },
   {
     id: 3,
-    date: "Februari 2026",
-    title: "Sekarang dan Seterusnya",
+    date: "Tahun 2025",
+    title: "Banyak Konflik Tapi Dewasa",
     description:
-      "Happy Valentine's Day, seng! Tiga tahun ini rasanya cepet banget. Makasih udah selalu ada. Love you always! ❤️",
+      "Tahun yang penuh ujian dan banyak miskom wkwk. Tapi dari situ kita belajar buat saling pengertian dan makin dewasa ngehadapin masalah berdua.",
+    image: "/photos/2025.jpg",
+  },
+  {
+    id: 4,
+    date: "Tahun 2026",
+    title: "Mulai Tenang & Seterusnya",
+    description:
+      "Sekarang semuanya mulai tenang dan damai rasanya. Happy Valentine's Day, sayang! Makasih udah sabar dan selalu ada. Love you always! ❤️",
     image: "/photos/2026.jpg",
   },
 ];
@@ -36,7 +44,6 @@ export default function JourneyTimeline() {
 
   const handleReveal = () => {
     setIsRevealed(true);
-    // Kita kasih jeda dikit biar animasinya jalan dulu, baru layarnya nge-scroll nengahin foto
     setTimeout(() => {
       if (photoRef.current) {
         photoRef.current.scrollIntoView({
@@ -58,7 +65,7 @@ export default function JourneyTimeline() {
               Our Journey 💖
             </h1>
             <p className="text-lg text-rose-400 font-medium">
-              2024 - 2026 & Masih Berlanjut
+              2023 - 2026 & Masih Berlanjut
             </p>
           </div>
 
@@ -92,9 +99,8 @@ export default function JourneyTimeline() {
         </div>
       </div>
 
-      {/* === BAGIAN KEJUTAN DI AKHIR (THE GRAND FINALE) === */}
+      {/* === BAGIAN KEJUTAN DI AKHIR === */}
       <div className="flex flex-col items-center justify-center px-4 mt-10">
-        {/* Tombol Love yang detak-detak */}
         <motion.button
           onClick={handleReveal}
           whileHover={{ scale: 1.1 }}
@@ -105,22 +111,20 @@ export default function JourneyTimeline() {
           ❤️
         </motion.button>
 
-        {/* Teks petunjuk yang ilang pas di-klik */}
         {!isRevealed && (
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="text-rose-400 font-medium mt-4 animate-pulse"
           >
-            Coba klik lovenya seng...
+            Coba klik lovenya sayang...
           </motion.p>
         )}
 
-        {/* Foto The Best yang Pop-Up ke Bawah */}
         <AnimatePresence>
           {isRevealed && (
             <motion.div
-              ref={photoRef} // Ref ditaruh di sini biar scrollnya pas ke elemen ini
+              ref={photoRef}
               initial={{ opacity: 0, height: 0, y: -30 }}
               animate={{ opacity: 1, height: "auto", y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -129,7 +133,7 @@ export default function JourneyTimeline() {
               <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-2xl overflow-hidden border-8 border-white shadow-2xl mb-8 rotate-1">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/photos/best.jpg" // Pastikan ada file best.jpg di folder public/photos
+                  src="/photos/best.jpg"
                   alt="Best of Us"
                   className="object-cover w-full h-full"
                 />
